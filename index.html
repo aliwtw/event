@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UOW Pecan CTF Event Location</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            padding: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #fff;
+        }
+        p {
+            margin: 20px;
+            font-size: 18px;
+        }
+        #address {
+            font-style: normal;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        #map {
+            width: 30vw;
+            height: 30vw;
+            margin-top: 20px;
+			border-radius: 25px;
+            border: #fff solid 2px;
+            overflow: hidden;
+        }
+
+        #countdown {
+            color: white;
+            animation-name: glow;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            font-size: larger;
+            font-weight: 500;
+            border: solid white 1px;
+            border-radius: 25px;
+            padding: 5px;
+            text-shadow: 0 0 10px white;
+        }
+
+        #container {
+
+            border: solid white 1px;
+            overflow: hidden;
+            padding: 9px;
+        }
+
+        @keyframes glow {
+            0%{box-shadow: 0 0 10px #c42fff, 0 0 20px #9815fd, 0 0 30px #ff00a2}
+            50% {box-shadow: 0 0 10px #535cff, 0 0 20px #1975ff, 0 0 30px #003ef8}
+            100% {box-shadow: 0 0 5px #53ffaf, 0 0 10px #19ff9f, 0 0 15px #29f800}
+        }
+
+    </style>
+</head>
+<body>
+    <h1>UOW Pecan CTF Event</h1>
+    <p>Welcome ... The event will be held at the following secure location:</p>
+    <div id='address'>
+        <strong>Event Venue</strong><br>
+        Room 104<br>
+        Building 39A<br>
+        University of Wollongong<br>
+        ________________________<br>
+        10:00 AM Satuday, 5th August, 2023 <br><br><br>
+
+    </div>
+
+    <div id="container">
+        <div id="countdown"></div>
+    </div>
+
+    <div id="map">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1628.5487383401264!2d150.8812976764656!3d-34.40712059237566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b131972a0706283%3A0x37586f955dabe18e!2sUOW%20Building%2039A!5e0!3m2!1sen!2sau!4v1690884769379!5m2!1sen!2sau"
+			height="100%" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+		</iframe>
+	</div>
+
+    <script>
+        // Set the target date and time for the countdown (YYYY-MM-DD HH:MM:SS format)
+        const targetDate = new Date("2023-08-05T10:59:59").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            console.log(timeLeft)
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "It's Go time Hackers!!!";
+            } else {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                const countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                document.getElementById("countdown").innerHTML = countdownText;
+            }
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
